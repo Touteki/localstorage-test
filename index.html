@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>LocalStorage demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Работа с localStorage</h1>
+
+  <button onclick="saveData()">Сохранить</button>
+  <button onclick="readData()">Прочитать</button>
+  <button onclick="clearData()">Очистить</button>
+
+  <div id="output"></div>
+
+  <script>
+    const STORAGE_KEY = "myData";
+
+    function saveData() {
+      const data = "Пример сохранённых данных " + new Date().toLocaleString();
+      localStorage.setItem(STORAGE_KEY, data);
+      document.getElementById("output").innerText = "Сохранено: " + data;
+    }
+
+    function readData() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (data) {
+        document.getElementById("output").innerText = "Прочитано: " + data;
+      } else {
+        document.getElementById("output").innerText = "Нет данных в localStorage";
+      }
+    }
+
+    function clearData() {
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById("output").innerText = "Данные очищены";
+    }
+  </script>
+</body>
+</html>
